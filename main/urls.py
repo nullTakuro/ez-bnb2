@@ -4,7 +4,7 @@ from . import views
 # Each url is linked to a views return
 urlpatterns = [
     #/users/
-    url(r'^users/$', views.users, name='Users'),   #default home page for the login page
+    url(r'^users/$', views.users, name='users'),   #default home page for the login page
     #/bookings/id="corresponding ID"
     url(r'^booking/id=(?P<booking_id>[0-9]+)/$', views.bookingRender, name='bookingRender'),
     #/user/id="corresponding ID"

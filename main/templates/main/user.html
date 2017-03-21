@@ -2,7 +2,7 @@
     <ul>
         {% for booking in all_bookings %}
         <h1>All bookings:</h1>
-        <li><a href="/booking/id={{ booking.id }}/">{{ booking.booking_name }}</a></li>
+        <li><a href="{% url 'userRender' user_id %}">{{ booking.booking_name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
