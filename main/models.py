@@ -45,6 +45,7 @@ class property_address(models.Model):
 class booking(models.Model):
     # booking_id is auto Generated
     property_id = models.ForeignKey(property, on_delete=models.CASCADE)      # A many-to-one relationship. Requires a positional argument: the class to which the model is related.
+    user_id = models.ForeignKey(user, on_delete=models.CASCADE)        # Uses the primary key asssigned to each user and imports it as a ForeignKey into the Property table. When a user is deleted the Propert associated is also deleted!
     booking_name = models.CharField(max_length=50)
     start_datetime = models.DateTimeField(auto_now=False, auto_now_add=False)        # A date and time, represented in Python by a datetime.datetime instance
     #duration = models.DurationField()       # A field for storing periods of time - modeled in Python by timedelta. When used on PostgreSQL, the data type used is an interval and on Oracle the data type is INTERVAL DAY(9) TO SECOND(6).

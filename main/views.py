@@ -9,8 +9,7 @@ def index(request):
     return render(request, 'main/index.html', {'all_users' : all_users}  )
 
 def userRender(request, user_id):
-    property_id = property.objects.get(pk=user_id)
-    all_bookings = booking.objects.get(pk=property_id)
+    all_bookings = booking.objects.filter(pk=user_id)
     return render(request, 'main/user.html', {'all_bookings' : all_bookings})
 
 def bookingRender(request, booking_id):
