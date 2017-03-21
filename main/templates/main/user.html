@@ -1,10 +1,10 @@
-{% if all_bookings %}
-<h1>All bookings:</h1>
+{% if propertys %}
+<h1>All properties for the user:</h1>
     <ul>
-        {% for booking in all_bookings %}
-        <li><a href="{% url 'bookingRender' booking.id %}">{{ booking.booking_name }}</a></li>
+        {% for property in propertys %}
+        <li><a href="{% url 'propertyRender' property.id %}">{{ property.assigned_name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
-    <h3>You dont have any bookings</h3>
+    <h3>You dont have any properties</h3>
 {% endif %}

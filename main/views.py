@@ -8,12 +8,19 @@ def users(request):
     all_users = user.objects.all()
     return render(request, 'main/users.html', {'all_users' : all_users}  )
 
+def propertyRender(request, property_id):
+    try:
+        bookings = booking.objects.filter(property_id=property_id) # The get() method returns a single object. filter() method will return a list
+    except user.DoesNotExist:
+        raise Http404("Property doesn't exist")
+    return render(request, 'main/property.html', {'bookings' : bookings})
+
 def userRender(request, user_id):
     try:
-        all_bookings = booking.objects.filter(pk=user_id) # The get() method returns a single object. filter() method will return a list
+        propertys = property.objects.filter(user_id=user_id)
     except user.DoesNotExist:
         raise Http404("User doesn't exist")
-    return render(request, 'main/user.html', {'all_bookings' : all_bookings})
+    return render(request, 'main/user.html', {'propertys' : propertys})
 
 def bookingRender(request, booking_id):
     try:
