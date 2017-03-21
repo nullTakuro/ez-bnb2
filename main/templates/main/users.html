@@ -1,7 +1,8 @@
 {% if all_users %}
+<h1>All users:</h1>
     <ul>
         {% for user in all_users %}
-        <li><a href="/user/id={{ user.id }}/">{{ user.username }}</a></li>
+        <li><a href="{% url 'userRender' user.id %}">{{ user.username }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
