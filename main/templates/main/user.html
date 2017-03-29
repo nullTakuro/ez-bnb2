@@ -1,74 +1,15 @@
-<!-- Loads the path to the static files (CSS) -->
-{% load staticfiles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    <!-- Uses a CDN (content delivery network) to provide all the files and code needed to run bootstrap (Latest compiled and minified CSS) -->
-<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />    <!-- Keeps the file path dynamic so that it can be changes easily -->
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">      <!-- Uses a CDN (content delivery network) to provide all the font files -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>     <!-- Uses a CDN (content delivery network) to provide all files needed for jQuery -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>     <!-- Uses a CDN (content delivery network) to provide all the files and code needed to run bootstrap (Latest compiled and minified JavaScript) -->
+{% extends 'main/base.html' %}       <!-- Gets all the contents of the base.html file and "pastes" it here so that the base template can be modified once and the modifications are carried over to all the pages/apps -->
 
-<nav class="navbar navbar-inverse">   <!-- Creation of the navigation bar on the top of the wep page. Inverse colours -->
-    <div class="container-fluid">   <!-- Creates a class of type container-fluid which means that the container will scale with the size of the browser it is viewed on and always take up the whole top of the page -->
-
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#TopNavBar">    <!-- Creates a collapsable menu toggle button -->
-                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
-                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
-                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
-                <!-- The 3 lines above are needed to create the usual 3 bar icon that is commonly found on collapsable menus -->
-            </button>
-            <a class="navbar-brand" href="{% url 'index' %}" >EZ BnB</a>      <!-- Creates a single button named EZ BnB with the class brand and is set to use the font "Lobster" which was loaded in using the google font API -->
-        </div>
-
-        <!-- Navbar Items -->
-        <div class="collapse navbar-collapse" id="TopNavBar">    <!-- Sends the values bellow to the toggleable navbar above when the browser size doesnt fit the total size of the buttons. -->
-            <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="{% url 'index' %}">      <!-- Keeps the file path dynamic so that it can be changes easily -->
-                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Properties    <!-- Creates a single button named Properties with the icon glyphicon-home -->
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp; Bookings    <!-- Creates a single button named Bookings with the icon glyphicon-calender -->
-                    </a>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search" method"get" action="#">       <!-- Creates a search field form that will be stylised to fit with the top navbar -->
-                <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>       <!-- Creates a single button named Search next to the search form above -->
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                  <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Booking    <!-- Creates a single button named Add Booking with the icon glyphicon-plus -->
-                  </a>
-              </li>
-              <li class="">
-                  <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
-                      <span class="glyphicon glyphicon-bed" aria-hidden="true"></span>&nbsp; Add Property    <!-- Creates a single button named Add Property with the icon glyphicon-bed -->
-                  </a>
-              </li>
-              <li class="">
-                  <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
-                      <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Log Out    <!-- Creates a single button named Log Out with the icon glyphicon-off -->
-                  </a>
-              </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-{% if propertys %}
-<h1>All properties for the user:</h1>
-    <ul>
-        {% for property in propertys %}
-        <li><a href="{% url 'propertyRender' property.id %}">{{ property.assigned_name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You dont have any properties</h3>
-{% endif %}
+{% block title %}All Properties{% endblock %}        <!-- Sets the webpage title as All Properties -->
+{% block body %}          <!-- Puts all the following code within the block called body within the base.html thus loading the navbar and all common aspects (ie the base template) as well as each pages individual content -->
+    {% if propertys %}
+    <h1>All properties for the user:</h1>
+        <ul>
+            {% for property in propertys %}
+            <li><a href="{% url 'propertyRender' property.id %}">{{ property.assigned_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You dont have any properties</h3>
+    {% endif %}
+{% endblock %}}

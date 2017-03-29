@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 # After each edit run this = python manage.py makemigrations login
@@ -16,7 +17,8 @@ class user(models.Model):
                                                                  # A CharField that checks that the value is a valid email address. It uses EmailValidator to validate the input.
     profile_pic = models.URLField(max_length=1000)       # A CharField for a URL.
                                                          # A CharField that checks that the value is a URL.
-
+    def get_absolute_url(self):
+        return reverse('userRender', kwarg={'pk':self.pk})
     def __str__(self):
         return self.username        # Returns the specific value as the value of the username
 

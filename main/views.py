@@ -1,4 +1,5 @@
-from django.http import Http404
+from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 from .models import user, booking, property
 
@@ -7,9 +8,12 @@ from .models import user, booking, property
 def index(request):
     return render(request, 'main/index.html')
 
-def users(request):
-    all_users = user.objects.all()
-    return render(request, 'main/users.html', {'all_users' : all_users}  )
+class UserIndexView(generic.ListView):
+    template_name = 'main/users.html'
+    context_object_name = 'all_users'       # Changes the default object name to 'all_users' from 'object_list' so that it can be used within the users.html
+
+    def get_queryset(self):
+        return user.objects.all()            # Queries the db and returns all the details for every user
 
 def propertyRender(request, property_id):
     try:
@@ -25,16 +29,6 @@ def userRender(request, user_id):
         raise Http404("User doesn't exist")
     return render(request, 'main/user.html', {'propertys' : propertys})
 
-def bookingRender(request, booking_id):
-    try:
-        bookings = booking.objects.get(pk=booking_id)
-    except booking.DoesNotExist:
-        raise Http404("Booking doesn't exist")
-    return render(request, 'main/booking.html', {'bookings' : bookings})
-
-def bookingAdd(request, booking_id):
-    #try:
-    #    bookings = booking.objects.get(pk=booking_id)
-    #except booking.DoesNotExist:
-    #    raise Http404("Booking doesn't exist")
-    raise Http404("Work in progress") #render(request, 'main/booking.html')#, {'bookings' : bookings})
+class BookingView(generic.DetailView):
+    model = booking
+    template_name = 'main/booking.html'
