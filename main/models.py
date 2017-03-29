@@ -49,7 +49,7 @@ class booking(models.Model):
     start_datetime = models.DateTimeField(auto_now=False, auto_now_add=False)        # A date and time, represented in Python by a datetime.datetime instance
     #duration = models.DurationField()       # A field for storing periods of time - modeled in Python by timedelta. When used on PostgreSQL, the data type used is an interval and on Oracle the data type is INTERVAL DAY(9) TO SECOND(6).
     end_datetime = models.DateTimeField(auto_now=False, auto_now_add=False)        # A date and time, represented in Python by a datetime.datetime instance
-    is_checkedin = models.BooleanField(default=False)
+    is_checked_in = models.BooleanField(default=False)
     creation_datetime = models.DateTimeField(auto_now=False, auto_now_add=True)     # Automatically set the field to now when the object is first created. Useful for creation of timestamps. Note that the current date is always used; it’s not just a default value that you can override. So even if you set a value for this field when creating the object, it will be ignored.
     last_modififed = models.DateTimeField(auto_now=True, auto_now_add=False)        # Automatically set the field to now every time the object is saved. Useful for “last-modified” timestamps. Note that the current date is always used; it’s not just a default value that you can override.
 

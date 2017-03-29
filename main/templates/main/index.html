@@ -17,24 +17,24 @@
                 <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
                 <!-- The 3 lines above are needed to create the usual 3 bar icon that is commonly found on collapsable menus -->
             </button>
-            <a class="navbar-brand" href="{% url 'index' %}">EZ BnB</a>
+            <a class="navbar-brand" href="{% url 'index' %}" >EZ BnB</a>
         </div>
+
+        <!-- Navbar Items -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'index' %}">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Properties
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp; Bookings
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </nav>
-
-
-
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-
-{% if bookings %}
-<h1>All bookings for the property:</h1>
-    <ul>
-        {% for booking in bookings %}
-        <li><a href="{% url 'bookingRender' booking.id %}">{{ booking.assigned_name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You dont have any properties</h3>
-{% endif %}

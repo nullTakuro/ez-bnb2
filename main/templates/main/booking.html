@@ -1,3 +1,28 @@
+<!-- Loads the path to the static files (CSS) -->
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    <!-- Uses a CDN (content delivery network) to provide all the files and code needed to run bootstrap (Latest compiled and minified CSS) -->
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />    <!-- Keeps the file path dynamic so that it can be changes easily -->
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">      <!-- Uses a CDN (content delivery network) to provide all the font files -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>     <!-- Uses a CDN (content delivery network) to provide all files needed for jQuery -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>     <!-- Uses a CDN (content delivery network) to provide all the files and code needed to run bootstrap (Latest compiled and minified JavaScript) -->
+
+<nav class="navbar navbar-inverse">   <!-- Creation of the navigation bar on the top of the wep page. Inverse colours -->
+    <div class="container-fluid">   <!-- Creates a class of type container-fluid which means that the container will scale with the size of the browser it is viewed on and always take up the whole top of the page -->
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#TopNavBar">    <!-- Creates a collapsable menu toggle button -->
+                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
+                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
+                <span class="icon-bar"></span>      <!-- Creates a single line within the button -->
+                <!-- The 3 lines above are needed to create the usual 3 bar icon that is commonly found on collapsable menus -->
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}">EZ BnB</a>
+        </div>
+    </div>
+</nav>
+
+
 <ul>
     <h3>Booking Info for {{bookings.assigned_name}}</h3>
 </ul>
