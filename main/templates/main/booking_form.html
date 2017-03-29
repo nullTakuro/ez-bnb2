@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}       <!-- Gets all the contents of the base.html file and "pastes" it here so that the base template can be modified once and the modifications are carried over to all the pages/apps -->
+
+{% block title %}Add a new Booking{% endblock %}        <!-- Sets the webpage title as Property Bookings -->
+{% block addbooking_active %}active{% endblock %}
+
+{% block body %}          <!-- Puts all the following code within the block called body within the base.html thus loading the navbar and all common aspects (ie the base template) as well as each pages individual content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel-body">
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">      <!-- enctype may not be needed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Form iniciation for adding new bookings -->
+                        {% csrf_token %}
+                        {% include 'main/form-template.html' %}         <!-- Insted of creating each form by hand this will use a template and apply it to all future forms -->
+                        <div class"form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

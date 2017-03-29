@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}       <!-- Gets all the contents of the base.html file and "pastes" it here so that the base template can be modified once and the modifications are carried over to all the pages/apps -->
 
 {% block title %}All Properties{% endblock %}        <!-- Sets the webpage title as All Properties -->
+{% block properties_active %}active{% endblock %}          <!-- Sets the block named properties_active to active so that the navbar shows the user they are on the properties page -->
+
 {% block body %}          <!-- Puts all the following code within the block called body within the base.html thus loading the navbar and all common aspects (ie the base template) as well as each pages individual content -->
     {% if propertys %}
     <h1>All properties for the user:</h1>

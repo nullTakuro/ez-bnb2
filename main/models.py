@@ -17,10 +17,8 @@ class user(models.Model):
                                                                  # A CharField that checks that the value is a valid email address. It uses EmailValidator to validate the input.
     profile_pic = models.URLField(max_length=1000)       # A CharField for a URL.
                                                          # A CharField that checks that the value is a URL.
-    def get_absolute_url(self):
-        return reverse('userRender', kwarg={'pk':self.pk})
     def __str__(self):
-        return self.username        # Returns the specific value as the value of the username
+        return self.username
 
 class property(models.Model):
     # property_id is auto Generated
@@ -55,6 +53,9 @@ class booking(models.Model):
     creation_datetime = models.DateTimeField(auto_now=False, auto_now_add=True)     # Automatically set the field to now when the object is first created. Useful for creation of timestamps. Note that the current date is always used; it’s not just a default value that you can override. So even if you set a value for this field when creating the object, it will be ignored.
     last_modififed = models.DateTimeField(auto_now=True, auto_now_add=False)        # Automatically set the field to now every time the object is saved. Useful for “last-modified” timestamps. Note that the current date is always used; it’s not just a default value that you can override.
 
+    def get_absolute_url(self):
+        return reverse('BookingView', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.assigned_name        # Returns the specific value as the value of the booking_id
 
@@ -79,4 +80,4 @@ class guest_address(models.Model):
     country = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.line_one       # Returns the specific value as the value of the guest_id
+        return self.line_one       # Returns the specific value as the value of the line_one

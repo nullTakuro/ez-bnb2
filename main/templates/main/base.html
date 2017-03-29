@@ -33,12 +33,12 @@
             <!-- Navbar Items -->
             <div class="collapse navbar-collapse" id="TopNavBar">    <!-- Sends the values bellow to the toggleable navbar above when the browser size doesnt fit the total size of the buttons. -->
                 <ul class="nav navbar-nav">
-                    <li class="">
+                    <li class="{% block properties_active %}{% endblock %}">       <!-- Creates a block that can be edited by each individual page. If the class is set to active then the navbar will be darker on the specific list item that is active -->
                         <a href="{% url 'index' %}">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Properties    <!-- Creates a single button named Properties with the icon glyphicon-home -->
                         </a>
                     </li>
-                    <li class="">
+                    <li class="{% block bookings_active %}{% endblock %}">       <!-- Creates a block that can be edited by each individual page. If the class is set to active then the navbar will be darker on the specific list item that is active -->
                         <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>&nbsp; Bookings    <!-- Creates a single button named Bookings with the icon glyphicon-calender -->
                         </a>
@@ -51,17 +51,17 @@
                     <button type="submit" class="btn btn-default">Search</button>       <!-- Creates a single button named Search next to the search form above -->
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                  <li class="">
-                      <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
+                  <li class="{% block addbooking_active %}{% endblock %}">       <!-- Creates a block that can be edited by each individual page. If the class is set to active then the navbar will be darker on the specific list item that is active -->
+                      <a href="{% url 'booking-add' %}">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Booking    <!-- Creates a single button named Add Booking with the icon glyphicon-plus -->
                       </a>
                   </li>
-                  <li class="">
+                  <li class="{% block addproperty_active %}{% endblock %}">       <!-- Creates a block that can be edited by each individual page. If the class is set to active then the navbar will be darker on the specific list item that is active -->
                       <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                           <span class="glyphicon glyphicon-bed" aria-hidden="true"></span>&nbsp; Add Property    <!-- Creates a single button named Add Property with the icon glyphicon-bed -->
                       </a>
                   </li>
-                  <li class="">
+                  <li>      <!-- This list item does not need a assignable class as it does not need to set to active as the user will never be on the "logout page" -->
                       <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Log Out    <!-- Creates a single button named Log Out with the icon glyphicon-off -->
                       </a>

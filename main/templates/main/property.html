@@ -1,6 +1,8 @@
 {% extends 'main/base.html' %}       <!-- Gets all the contents of the base.html file and "pastes" it here so that the base template can be modified once and the modifications are carried over to all the pages/apps -->
 
-{% block title %}Property Bookings{% endblock %}        <!-- Sets the webpage title as Property Bookings -->
+{% block title %}Bookings{% endblock %}        <!-- Sets the webpage title as Property Bookings -->
+{% block bookings_active %}active{% endblock %}          <!-- Sets the block named bookings_active to active so that the navbar shows the user they are on the Bookings page -->
+
 {% block body %}          <!-- Puts all the following code within the block called body within the base.html thus loading the navbar and all common aspects (ie the base template) as well as each pages individual content -->
     {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>

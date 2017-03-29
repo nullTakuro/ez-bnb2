@@ -1,5 +1,6 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
 from .models import user, booking, property
 
@@ -32,3 +33,15 @@ def userRender(request, user_id):
 class BookingView(generic.DetailView):
     model = booking
     template_name = 'main/booking.html'
+
+class BookingCreate(CreateView):
+    model = booking
+    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']
+
+class BookingUpdate(UpdateView):
+    model = booking
+    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']
+
+class BookingDelete(DeleteView):
+    model = booking
+    success_url = reverse_lazy('index')
