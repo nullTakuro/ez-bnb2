@@ -13,6 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>     <!-- Uses a CDN (content delivery network) to provide all files needed for jQuery -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>     <!-- Uses a CDN (content delivery network) to provide all the files and code needed to run bootstrap (Latest compiled and minified JavaScript) -->
 
+    <!-- bootbox.js at 4.4.0 -->
+    <script src="https://rawgit.com/makeusabrew/bootbox/f3a04a57877cab071738de558581fbc91812dce9/bootbox.js"></script>
+
   </head>
   <body>
     <!-- Navbar initiation  -->
@@ -57,7 +60,7 @@
                       </a>
                   </li>
                   <li class="{% block addproperty_active %}{% endblock %}">       <!-- Creates a block that can be edited by each individual page. If the class is set to active then the navbar will be darker on the specific list item that is active -->
-                      <a href="#">      <!-- Keeps the file path dynamic so that it can be changes easily -->
+                      <a href="{% url 'property-add' %}">      <!-- Keeps the file path dynamic so that it can be changes easily -->
                           <span class="glyphicon glyphicon-bed" aria-hidden="true"></span>&nbsp; Add Property    <!-- Creates a single button named Add Property with the icon glyphicon-bed -->
                       </a>
                   </li>

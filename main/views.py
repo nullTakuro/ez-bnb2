@@ -2,7 +2,8 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
-from .models import user, booking, property
+from .models import user, booking, property, property_address
+
 
 # Create your views here.
 
@@ -16,12 +17,33 @@ class UserIndexView(generic.ListView):
     def get_queryset(self):
         return user.objects.all()            # Queries the db and returns all the details for every user
 
-def propertyRender(request, property_id):
+def propertyView(request, pk):
     try:
-        bookings = booking.objects.filter(property_id=property_id) # The get() method returns a single object. filter() method will return a list
+        bookings = booking.objects.filter(property_id=pk)           # The get() method returns a single object. filter() method will return a list
+        propertys = property.objects.filter(pk=pk)           # The get() method returns a single object. filter() method will return a list
     except user.DoesNotExist:
         raise Http404("Property doesn't exist")
-    return render(request, 'main/property.html', {'bookings' : bookings})
+    return render(request, 'main/property.html', {'bookings' : bookings}, {'propertys' : propertys})
+
+class PropertyCreate(CreateView):
+    model = property
+    fields = ['user_id', 'assigned_name']           # Defines the fields the user can input and modify
+
+class PropertyUpdate(UpdateView):
+    model = property
+    fields = ['user_id', 'assigned_name']         # Defines the fields the user can input and modify
+
+class PropertyDelete(DeleteView):
+    model = property
+    success_url = reverse_lazy('index')         # Denotes what page the user is redirected to once the action is carried out
+
+class PropertyAddressCreate(CreateView):
+    model = property_address
+    fields = ['property_id', 'line_one', 'line_two', 'city', 'country']           # Defines the fields the user can input and modify
+
+class PropertyAddressUpdate(UpdateView):
+    model = property_address
+    fields = ['property_id', 'line_one', 'line_two', 'city', 'country']           # Defines the fields the user can input and modify
 
 def userRender(request, user_id):
     try:
@@ -36,12 +58,12 @@ class BookingView(generic.DetailView):
 
 class BookingCreate(CreateView):
     model = booking
-    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']
+    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']           # Defines the fields the user can input and modify
 
 class BookingUpdate(UpdateView):
     model = booking
-    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']
+    fields = ['property_id', 'assigned_name', 'start_datetime', 'end_datetime', 'is_checked_in']           # Defines the fields the user can input and modify
 
 class BookingDelete(DeleteView):
     model = booking
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('index')         # Denotes what page the user is redirected to once the action is carried out

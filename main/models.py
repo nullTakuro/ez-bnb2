@@ -25,8 +25,12 @@ class property(models.Model):
     user_id = models.ForeignKey(user, on_delete=models.CASCADE)        # Uses the primary key asssigned to each user and imports it as a ForeignKey into the Property table. When a user is deleted the Propert associated is also deleted!
     assigned_name = models.CharField(max_length=30)      # As the value for this data is to be assigned below as the default return value for when a search query is run pertaining to this data its value cannot be null so a defualt value must be assigned!
 
+    def get_absolute_url(self):
+        return reverse('PropertyView', kwargs={'pk': self.pk})       # When a property is added using the form this will redirect the user to the view PropertyView which will display the details that the user just added
+
     def __str__(self):
         return self.assigned_name        # Returns the specific value as the value of the assigned_name
+
     class Meta:
         verbose_name = 'Propery'        # If this isn’t given, Django will use verbose_name + "s".
         verbose_name_plural = 'Properties'      # Overrides djangos built in plurisation which sets the verbose name as verbose_name + "s".
@@ -38,6 +42,9 @@ class property_address(models.Model):
     line_two = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
+
+    def get_absolute_url(self):
+        return reverse('PropertyView', kwargs={'pk': self.property_id})       # When a property is added using the form this will redirect the user to the view PropertyView which will display the details that the user just added
 
     def __str__(self):
         return self.line_one        # Returns the specific value as the value of the line_one
@@ -54,7 +61,7 @@ class booking(models.Model):
     last_modififed = models.DateTimeField(auto_now=True, auto_now_add=False)        # Automatically set the field to now every time the object is saved. Useful for “last-modified” timestamps. Note that the current date is always used; it’s not just a default value that you can override.
 
     def get_absolute_url(self):
-        return reverse('BookingView', kwargs={'pk': self.pk})
+        return reverse('BookingView', kwargs={'pk': self.pk})       # When a booking is added using the form this will redirect the user to the view BookingView which will display the details that the user just added
 
     def __str__(self):
         return self.assigned_name        # Returns the specific value as the value of the booking_id

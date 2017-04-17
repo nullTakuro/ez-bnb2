@@ -8,7 +8,18 @@
     <h1>All properties for the user:</h1>
         <ul>
             {% for property in propertys %}
-            <li><a href="{% url 'propertyRender' property.id %}">{{ property.assigned_name }}</a></li>
+            <li><a href="{% url 'propertyView' property.id %}">{{ property.assigned_name }}</a>
+                <button type="submit" class="btn btn-link btn-sm" onclick="window.location.href='{% url 'property-update' property.id %}'">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <form action="{% url 'property-delete' property.id %}" method="post" style="display: inline;">      <!-- Creates a delete button that is placed besides each list item so that the user can delete certain bookings. This button requires user confirmation before deleting -->
+                    {% csrf_token %}          <!-- Cross Site Request Forgery protection - The CSRF middleware and template tag provides easy-to-use protection against Cross Site Request Forgeries. This type of attack occurs when a malicious website contains a link, a form button or some JavaScript that is intended to perform some action on your website, using the credentials of a logged-in user who visits the malicious site in their browser. A related type of attack, ‘login CSRF’, where an attacking site tricks a user’s browser into logging into a site with someone else’s credentials, is also covered. The first defense against CSRF attacks is to ensure that GET requests (and other ‘safe’ methods, as defined by RFC 7231#section-4.2.1) are side effect free. Requests via ‘unsafe’ methods, such as POST, PUT, and DELETE, can then be protected by following the steps below. -->
+                    <input type="hidden" name="property_id" value="{{ property.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure?')">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form>
+            </li>
             {% endfor %}
         </ul>
     {% else %}
