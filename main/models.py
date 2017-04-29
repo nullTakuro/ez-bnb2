@@ -24,9 +24,13 @@ class property(models.Model):
     # property_id is auto Generated
     user_id = models.ForeignKey(user, on_delete=models.CASCADE)        # Uses the primary key asssigned to each user and imports it as a ForeignKey into the Property table. When a user is deleted the Propert associated is also deleted!
     assigned_name = models.CharField(max_length=30)      # As the value for this data is to be assigned below as the default return value for when a search query is run pertaining to this data its value cannot be null so a defualt value must be assigned!
-
+    address_line_one = models.CharField(max_length=50)
+    address_line_two = models.CharField(max_length=50)
+    address_city = models.CharField(max_length=50)
+    address_country = models.CharField(max_length=50)
+    
     def get_absolute_url(self):
-        return reverse('PropertyView', kwargs={'pk': self.pk})       # When a property is added using the form this will redirect the user to the view PropertyView which will display the details that the user just added
+        return reverse('propertyView', kwargs={'pk': self.pk})       # When a property is added using the form this will redirect the user to the view PropertyView which will display the details that the user just added
 
     def __str__(self):
         return self.assigned_name        # Returns the specific value as the value of the assigned_name
@@ -34,20 +38,6 @@ class property(models.Model):
     class Meta:
         verbose_name = 'Propery'        # If this isn’t given, Django will use verbose_name + "s".
         verbose_name_plural = 'Properties'      # Overrides djangos built in plurisation which sets the verbose name as verbose_name + "s".
-
-class property_address(models.Model):
-    # property_address_id is auto Generated
-    property_id = models.ForeignKey(property, on_delete=models.CASCADE)        # A many-to-one relationship. Requires a positional argument: the class to which the model is related.
-    line_one = models.CharField(max_length=50)
-    line_two = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-
-    def get_absolute_url(self):
-        return reverse('PropertyView', kwargs={'pk': self.property_id})       # When a property is added using the form this will redirect the user to the view PropertyView which will display the details that the user just added
-
-    def __str__(self):
-        return self.line_one        # Returns the specific value as the value of the line_one
 
 class booking(models.Model):
     # booking_id is auto Generated

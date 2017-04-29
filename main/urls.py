@@ -24,12 +24,6 @@ urlpatterns = [
     #/booking/id="corresponding ID"
     url(r'^booking/id=(?P<pk>[0-9]+)/$', views.BookingView.as_view(), name='BookingView'),
 
-    # /propertyaddress/add/
-    url(r'^propertyaddress/add/$', views.PropertyAddressCreate.as_view(), name='propertyaddress-create'),
-
-    # /propertyaddress/update/id="corresponding ID"
-    url(r'^property/update/id=(?P<pk>[0-9]+)/$', views.PropertyAddressUpdate.as_view(), name='propertyaddress-update'),
-
     # /booking/add/
     url(r'^booking/add/$', views.BookingCreate.as_view(), name='booking-add'),
 

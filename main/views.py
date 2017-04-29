@@ -2,7 +2,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
-from .models import user, booking, property, property_address
+from .models import user, booking, property
 
 
 # Create your views here.
@@ -27,23 +27,15 @@ def propertyView(request, pk):
 
 class PropertyCreate(CreateView):
     model = property
-    fields = ['user_id', 'assigned_name']           # Defines the fields the user can input and modify
+    fields = ['user_id', 'assigned_name', 'address_line_one', 'address_line_two', 'address_city', 'address_country']           # Defines the fields the user can input and modify
 
 class PropertyUpdate(UpdateView):
     model = property
-    fields = ['user_id', 'assigned_name']         # Defines the fields the user can input and modify
+    fields = ['user_id', 'assigned_name', 'address_line_one', 'address_line_two', 'address_city', 'address_country']         # Defines the fields the user can input and modify
 
 class PropertyDelete(DeleteView):
     model = property
     success_url = reverse_lazy('index')         # Denotes what page the user is redirected to once the action is carried out
-
-class PropertyAddressCreate(CreateView):
-    model = property_address
-    fields = ['property_id', 'line_one', 'line_two', 'city', 'country']           # Defines the fields the user can input and modify
-
-class PropertyAddressUpdate(UpdateView):
-    model = property_address
-    fields = ['property_id', 'line_one', 'line_two', 'city', 'country']           # Defines the fields the user can input and modify
 
 def userRender(request, user_id):
     try:
