@@ -6,6 +6,9 @@ urlpatterns = [
     #/       index page
     url(r'^$', views.index, name='index'),
 
+
+    url(r'^register/$', views.UserFormView.as_view(), name='register'),
+
     #/users/
     url(r'^users/$', views.UserIndexView.as_view(), name='UserIndexView'),
 
